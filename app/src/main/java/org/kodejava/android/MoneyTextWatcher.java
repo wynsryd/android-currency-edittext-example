@@ -58,6 +58,7 @@ public class MoneyTextWatcher implements TextWatcher {
             String replaceRegex = String.format("[%s,.\\s]",
                     Objects.requireNonNull(formatter.getCurrency()).getSymbol(locale));
             String currencyValue = value.replaceAll(replaceRegex, "");
+            currencyValue = "".equals(currencyValue) ? "0" : currencyValue;
             return new BigDecimal(currencyValue);
         } catch (Exception e) {
             Log.e("App", e.getMessage(), e);
